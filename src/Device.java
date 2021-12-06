@@ -15,7 +15,6 @@ public class Device implements Runnable {
     public void run() {
         try {
             connect();
-            System.out.println(name + " logged in1");
             sleep(100);
             performOnlineActivity();
             sleep(100);
@@ -28,6 +27,7 @@ public class Device implements Runnable {
     public void connect()
     {
         router.occupy(this);
+        System.out.println(name + " logged in1");
     }
     public void performOnlineActivity()
     {
