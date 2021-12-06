@@ -20,7 +20,7 @@ public class Semaphore {
             catch (InterruptedException e) {}
         }
         else {
-            System.out.println(device + "arrived");
+            System.out.println(device + " arrived");
         }
     }
     public synchronized void V(Device device) // Signal

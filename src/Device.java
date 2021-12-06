@@ -13,25 +13,21 @@ public class Device implements Runnable {
 
     @Override
     public void run() {
-        connect();
         try {
+            connect();
+            System.out.println(name + " logged in1");
             sleep(100);
+            performOnlineActivity();
+            sleep(100);
+            disconnect();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        performOnlineActivity();
-        try {
-            sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        disconnect();
     }
 
     public void connect()
     {
         router.occupy(this);
-        System.out.println("login");
     }
     public void performOnlineActivity()
     {
@@ -40,7 +36,7 @@ public class Device implements Runnable {
     public void disconnect()
     {
         router.release(this);
-        System.out.println("Logged out");
+        System.out.println(name + " Logged out1");
     }
 
     public String getName() {

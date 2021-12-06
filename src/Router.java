@@ -4,16 +4,17 @@ public class Router {
 
     private ArrayList<Device> connections;
     private Semaphore semaphore;
-    private int size;
+    private int N;
 
     public Router(int N){
-        size=N;
+        this.N=N;
         semaphore=new Semaphore(N);
+        connections = new ArrayList<>();
     }
 
     public void occupy(Device device)
     {
-        if(connections.size()<size){
+        if(connections.size()<N){
             connections.add(device);
         }
         semaphore.P(device);
