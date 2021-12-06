@@ -1,3 +1,5 @@
+package com.company;
+
 public class Semaphore {
     protected int value = 0;
     protected Semaphore()
@@ -14,21 +16,15 @@ public class Semaphore {
         if (value < 0) {
             try
             {
-                System.out.println(device + " arrived and waiting");
                 wait();
             }
             catch (InterruptedException e) {}
         }
-        else {
-            System.out.println(device + " arrived");
-        }
     }
-    public synchronized void V(Device device) // Signal
+    public synchronized void V() // Signal
     {
-        System.out.println(device.getName() + ": Logged out");
         value++ ;
-        if (value <= 0) {
+        if (value <= 0)
             notify();
-        }
     }
 }

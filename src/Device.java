@@ -1,3 +1,5 @@
+package com.company;
+
 import static java.lang.Thread.sleep;
 
 public class Device implements Runnable {
@@ -13,21 +15,25 @@ public class Device implements Runnable {
 
     @Override
     public void run() {
+        connect();
         try {
-            connect();
             sleep(100);
-            performOnlineActivity();
-            sleep(100);
-            disconnect();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        performOnlineActivity();
+        try {
+            sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        disconnect();
     }
 
     public void connect()
     {
         router.occupy(this);
-        System.out.println(name + " logged in1");
+        System.out.println("login");
     }
     public void performOnlineActivity()
     {
@@ -36,19 +42,6 @@ public class Device implements Runnable {
     public void disconnect()
     {
         router.release(this);
-        System.out.println(name + " Logged out1");
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    @Override
-    public String toString() {
-        return name + " (" + type + ")";
+        System.out.println("Logged out");
     }
 }

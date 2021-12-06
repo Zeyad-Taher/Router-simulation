@@ -1,20 +1,21 @@
+package com.company;
+
 import java.util.ArrayList;
 
 public class Router {
 
     private ArrayList<Device> connections;
     private Semaphore semaphore;
-    private int N;
+    private int size;
 
     public Router(int N){
-        this.N=N;
+        size=N;
         semaphore=new Semaphore(N);
-        connections = new ArrayList<>();
     }
 
     public void occupy(Device device)
     {
-        if(connections.size()<N){
+        if(connections.size()<size){
             connections.add(device);
         }
         semaphore.P(device);
@@ -22,6 +23,6 @@ public class Router {
     public void release(Device device)
     {
         connections.remove(device);
-        semaphore.V(device);
+        semaphore.V();
     }
 }
